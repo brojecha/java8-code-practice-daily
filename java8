@@ -1,0 +1,52 @@
+Prdicate<> : We ca use Predicate to Check for Boolean condition. It is an functional interface.
+We can test boolean condition by using test() method.
+
+Instream :
+
+Use IntStream instead of Stream<Integer> when:
+
+=> You’re working with numeric sequences or values (like indexes, counters, calculations).
+=> You want to avoid boxing (i.e., converting between int and Integer), which improves performance and reduces memory overhead.
+=> You need operations like .sum(), .average(), .max(), .min() straight on primitives .
+=> You’re generating ranges or arithmetic sequences — e.g., through range(), rangeClosed(), iterate(), generate().
+=> You want functional pipelines for numeric data using filters, maps, or statistical reductions.
+
+IntStream.range(start, end)
+
+What it does :
+=============
+Generates a sequential, ordered IntStream from start (inclusive) to end (exclusive)
+🧠 Use cases
+=============
+Replacing traditional for-loops, e.g.:
+======================================
+for (int i = start; i < end; i++) { … }
+becomes:
+
+
+IntStream.range(start, end)
+         .forEach(i -> /* use i */);
+
+Iterating over array indices to compare or transform paired elements.
+
+Working with numeric range-based operations like generating squares, filtering odds, summing series.
+
+Example:
+
+java
+Copy
+Edit
+IntStream.range(1, 10)
+         .filter(i -> i % 2 == 0)
+         .forEach(System.out::println);  // 2 4 6 8
+stackoverflow.com
++13
+javacodegeeks.com
++13
+stackify.com
++13
+
+📝 range() vs rangeClosed()
+Method	Range Inclusive/Exclusive	Use case
+IntStream.range(1, 5)	1, 2, 3, 4 (inclusive → exclusive)	Replace for-loops without upper bound
+IntStream.rangeClosed(1, 5)	1, 2, 3, 4, 5 (inclusive → inclusive)	Use when upper bound should be included
